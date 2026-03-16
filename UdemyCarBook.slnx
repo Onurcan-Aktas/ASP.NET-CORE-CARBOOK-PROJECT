@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/Core/">
+    <Project Path="Core/UdemyCarBook.Domain/UdemyCarBook.Domain.csproj" />
+  </Folder>
+</Solution>
