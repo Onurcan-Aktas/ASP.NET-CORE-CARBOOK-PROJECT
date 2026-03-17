@@ -1,5 +1,12 @@
 <Solution>
   <Folder Name="/Core/">
+    <Project Path="Core/UdemyCarBook.Application/UdemyCarBook.Application.csproj" Id="d931d342-bce2-4d78-be0e-2d45b67632a6" />
     <Project Path="Core/UdemyCarBook.Domain/UdemyCarBook.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="Infrastructure/UdemyCarBook.Persistance/UdemyCarBook.Persistance.csproj" Id="13fb52a9-04d1-45c3-bd22-afecb5006827" />
+  </Folder>
+  <Folder Name="/Presentation/">
+    <Project Path="Presentation/UdemyCarBook.WebApi/UdemyCarBook.WebApi.csproj" Id="3e203cc7-a13d-4b6e-a178-ce194106e85d" />
   </Folder>
 </Solution>
