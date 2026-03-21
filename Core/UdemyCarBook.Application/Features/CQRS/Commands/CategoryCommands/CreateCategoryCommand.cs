@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UdemyCarBook.Application.Features.CQRS.Commands.BrandCommands
+namespace UdemyCarBook.Application.Features.CQRS.Commands.CategoryCommands
 {
-    public class CreateBrandCommand
+    public class CreateCategoryCommand
     {
         public string Name { get; set; }
     }

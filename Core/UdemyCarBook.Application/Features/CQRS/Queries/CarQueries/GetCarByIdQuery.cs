@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UdemyCarBook.Application.Features.CQRS.Commands.BrandCommands
+namespace UdemyCarBook.Application.Features.CQRS.Queries.CarQueries
 {
-    public class RemoveBrandCommand
+    public class GetCarByIdQuery
     {
         public int Id { get; set; }
 
-        public RemoveBrandCommand(int id)
+        public GetCarByIdQuery(int id)
         {
             Id = id;
         }
