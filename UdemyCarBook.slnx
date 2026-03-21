@@ -3,6 +3,9 @@
     <Project Path="Core/UdemyCarBook.Application/UdemyCarBook.Application.csproj" Id="d931d342-bce2-4d78-be0e-2d45b67632a6" />
     <Project Path="Core/UdemyCarBook.Domain/UdemyCarBook.Domain.csproj" />
   </Folder>
+  <Folder Name="/Frontends/">
+    <Project Path="Frontends/UdemyCarBook.WebUI/UdemyCarBook.WebUI.csproj" Id="f1ac9602-bf56-48d3-a233-3d5af896bff2" />
+  </Folder>
   <Folder Name="/Infrastructure/">
     <Project Path="Infrastructure/UdemyCarBook.Persistance/UdemyCarBook.Persistance.csproj" Id="13fb52a9-04d1-45c3-bd22-afecb5006827" />
   </Folder>
