@@ -10,14 +10,14 @@ using UdemyCarBook.Domain.Entities;
 
 namespace UdemyCarBook.Application.Features.Mediator.Handlers.SocialMediaHandlers
 {
-    public class CreatePricingCommandHandler : IRequestHandler<CreateSocialMediaCommand>
+    public class CreateSocialMediaCommandHandler : IRequestHandler<CreateSocialMediaCommand>
     {
         private readonly IRepository<SocialMedia> _repository;
-        public CreatePricingCommandHandler(IRepository<SocialMedia> repository)
+        public CreateSocialMediaCommandHandler(IRepository<SocialMedia> repository)
         {
             _repository = repository;
         }
-        public async Task Handle(CreateSocialMediaCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateSocialMediaCommand request, CancellationToken cancellationToken)
         {
             await _repository.CreateAsync(new SocialMedia
             {
@@ -25,6 +25,8 @@ namespace UdemyCarBook.Application.Features.Mediator.Handlers.SocialMediaHandler
                 Icon = request.Icon,
                 Url = request.Url
             });
+
+            return Unit.Value;
         }
     }
 }

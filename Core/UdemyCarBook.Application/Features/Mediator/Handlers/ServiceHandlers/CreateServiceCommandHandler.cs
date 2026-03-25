@@ -10,14 +10,14 @@ using UdemyCarBook.Domain.Entities;
 
 namespace UdemyCarBook.Application.Features.Mediator.Handlers.ServiceHandlers
 {
-    public class CreatePricingCommandHandler : IRequestHandler<CreateServiceCommand>
+    public class CreateServiceCommandHandler : IRequestHandler<CreateServiceCommand>
     {
         private readonly IRepository<Service> _repository;
-        public CreatePricingCommandHandler(IRepository<Service> repository)
+        public CreateServiceCommandHandler(IRepository<Service> repository)
         {
             _repository = repository;
         }
-        public async Task Handle(CreateServiceCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateServiceCommand request, CancellationToken cancellationToken)
         {
             await _repository.CreateAsync(new Service
             {
@@ -25,6 +25,8 @@ namespace UdemyCarBook.Application.Features.Mediator.Handlers.ServiceHandlers
                 IconUrl = request.IconUrl,
                 Title = request.Title
             });
+
+            return Unit.Value;
         }
     }
 }

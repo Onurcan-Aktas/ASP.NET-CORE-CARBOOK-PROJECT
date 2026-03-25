@@ -17,11 +17,12 @@ namespace UdemyCarBook.Application.Features.Mediator.Handlers.PricingHandlers
         {
             _repository = repository;
         }
-        public async Task Handle(UpdatePricingCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdatePricingCommand request, CancellationToken cancellationToken)
         {
             var values = await _repository.GetByIdAsync(request.PricingID);
             values.Name = request.Name;
             await _repository.UpdateAsync(values);
+            return Unit.Value;
         }
     }
 }

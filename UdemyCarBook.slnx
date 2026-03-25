@@ -4,6 +4,7 @@
     <Project Path="Core/UdemyCarBook.Domain/UdemyCarBook.Domain.csproj" />
   </Folder>
   <Folder Name="/Frontends/">
+    <Project Path="Frontends/UdemyCarBook.Dto/UdemyCarBook.Dto.csproj" Id="2c3e973a-88f8-4fda-b305-1d66a3795b9c" />
     <Project Path="Frontends/UdemyCarBook.WebUI/UdemyCarBook.WebUI.csproj" Id="f1ac9602-bf56-48d3-a233-3d5af896bff2" />
   </Folder>
   <Folder Name="/Infrastructure/">

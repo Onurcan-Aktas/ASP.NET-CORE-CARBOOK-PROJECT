@@ -17,7 +17,7 @@ namespace UdemyCarBook.Application.Features.Mediator.Handlers.FooterAddressHandl
         {
             _repository = repository;
         }
-        public async Task Handle(CreateFooterAddressCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateFooterAddressCommand request, CancellationToken cancellationToken)
         {
             await _repository.CreateAsync(new FooterAddress
             {
@@ -26,6 +26,8 @@ namespace UdemyCarBook.Application.Features.Mediator.Handlers.FooterAddressHandl
                 Email = request.Email,
                 Phone = request.Phone
             });
+
+            return Unit.Value;
         }
     }
 }
