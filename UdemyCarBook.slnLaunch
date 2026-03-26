@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Frontends\\UdemyCarBook.WebUI\\UdemyCarBook.WebUI.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Presentation\\UdemyCarBook.WebApi\\UdemyCarBook.WebApi.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

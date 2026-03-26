@@ -1,29 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using UdemyCarBook.Dto.BannerDtos;
 using UdemyCarBook.Dto.CarDtos;
 
-namespace UdemyCarBook.WebUI.Controllers
+namespace UdemyCarBook.WebUI.ViewComponents.DefaultViewComponents
 {
-    public class CarController : Controller
+    public class _DefaultCoverUILayoutComponentPartial:ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public CarController(IHttpClientFactory httpClientFactory)
+        public _DefaultCoverUILayoutComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> Index()
+        public async  Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5243/api/Cars/GetCarWithBrand");
+            var responseMessage = await client.GetAsync("http://localhost:5243/api/Banners");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultCarWithBrandsDtos>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultBannerDto>>(jsonData);
                 return View(values);
             }
             return View();
         }
+
     }
 }
