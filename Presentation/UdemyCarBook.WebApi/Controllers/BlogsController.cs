@@ -1,5 +1,4 @@
-﻿
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UdemyCarBook.Application.Features.Mediator.Commands.BlogCommands;
@@ -12,34 +11,48 @@ namespace UdemyCarBook.WebApi.Controllers
     public class BlogsController : ControllerBase
     {
         private readonly IMediator _mediator;
+
         public BlogsController(IMediator mediator)
         {
             _mediator = mediator;
         }
+
         [HttpGet]
         public async Task<IActionResult> BlogList()
         {
             var values = await _mediator.Send(new GetBlogQuery());
             return Ok(values);
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBlog(int id)
         {
             var value = await _mediator.Send(new GetBlogByIdQuery(id));
+
+            // Handler'dan null gelirse kullanıcıya 404 dönüyoruz
+            if (value == null)
+            {
+                return NotFound($"{id} ID'li blog bulunamadı.");
+            }
+
             return Ok(value);
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateBlog(CreateBlogCommand command)
         {
             await _mediator.Send(command);
             return Ok("Blog başarıyla eklendi");
         }
-        [HttpDelete]
+
+        // URL'den id parametresini alabilmesi için "{id}" eklendi
+        [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveBlog(int id)
         {
             await _mediator.Send(new RemoveBlogCommand(id));
             return Ok("Blog başarıyla silindi");
         }
+
         [HttpPut]
         public async Task<IActionResult> UpdateBlog(UpdateBlogCommand command)
         {
@@ -61,11 +74,11 @@ namespace UdemyCarBook.WebApi.Controllers
             return Ok(values);
         }
 
-        //[HttpGet("GetBlogByAuthorId")]
-        //public async Task<IActionResult> GetBlogByAuthorId(int id)
-        //{
-        //    var values = await _mediator.Send(new GetBlogByAuthorIdQuery(id));
-        //    return Ok(values);
-        //}
+        [HttpGet("GetBlogByAuthorId")]
+        public async Task<IActionResult> GetBlogByAuthorId(int id)
+        {
+            var values = await _mediator.Send(new GetBlogByAuthorIdQuery(id));
+            return Ok(values);
+        }
     }
 }

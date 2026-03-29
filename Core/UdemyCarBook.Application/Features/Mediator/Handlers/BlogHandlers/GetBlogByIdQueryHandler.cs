@@ -1,5 +1,4 @@
-﻿
-using MediatR;
+﻿using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +12,12 @@ using UdemyCarBook.Domain.Entities;
 
 namespace UdemyCarBook.Application.Features.Mediator.Handlers.BlogHandlers
 {
-    public class GetPricingByIdQueryHandler : IRequestHandler<GetBlogByIdQuery, GetBlogByIdQueryResult>
+    // Sınıf adı GetPricingByIdQueryHandler'dan GetBlogByIdQueryHandler'a düzeltildi
+    public class GetBlogByIdQueryHandler : IRequestHandler<GetBlogByIdQuery, GetBlogByIdQueryResult>
     {
         private readonly IRepository<Blog> _repository;
-        public GetPricingByIdQueryHandler(IRepository<Blog> repository)
+
+        public GetBlogByIdQueryHandler(IRepository<Blog> repository)
         {
             _repository = repository;
         }
@@ -24,6 +25,13 @@ namespace UdemyCarBook.Application.Features.Mediator.Handlers.BlogHandlers
         public async Task<GetBlogByIdQueryResult> Handle(GetBlogByIdQuery request, CancellationToken cancellationToken)
         {
             var values = await _repository.GetByIdAsync(request.Id);
+
+            // Veritabanında kayıt yoksa null dönüyoruz (Null Reference Hatasını Önler)
+            if (values == null)
+            {
+                return null;
+            }
+
             return new GetBlogByIdQueryResult
             {
                 BlogID = values.BlogID,
@@ -31,6 +39,7 @@ namespace UdemyCarBook.Application.Features.Mediator.Handlers.BlogHandlers
                 CategoryID = values.CategoryID,
                 CoverImageUrl = values.CoverImageUrl,
                 CreatedDate = values.CreatedDate,
+                Description = values.Description,
                 Title = values.Title
             };
         }
