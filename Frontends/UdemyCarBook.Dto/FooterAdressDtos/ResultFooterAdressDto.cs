@@ -1,12 +1,13 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UdemyCarBook.Dto.FooterAdressDtos
+namespace UdemyCarBook.Dto.FooterAddressDtos
 {
-    public class ResultFooterAdressDto
+    public class ResultFooterAddressDto
     {
         public int FooterAddressID { get; set; }
         public string Description { get; set; }

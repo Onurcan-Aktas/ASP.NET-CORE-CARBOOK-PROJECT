@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using UdemyCarBook.Dto.FooterAdressDtos;
+using UdemyCarBook.Dto.FooterAddressDtos;
 
 namespace UdemyCarBook.WebUI.ViewComponents.FooterAdressComponents
 {
@@ -26,7 +26,7 @@ namespace UdemyCarBook.WebUI.ViewComponents.FooterAdressComponents
             responseMessage.EnsureSuccessStatusCode(); // Eğer API hata verirse sayfa bilerek çöksün ve görelim
 
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultFooterAdressDto>>(jsonData);
+            var values = JsonConvert.DeserializeObject<List<ResultFooterAddressDto>>(jsonData);
 
             return View(values);
         }
