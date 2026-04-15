@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 using UdemyCarBook.Dto.BlogDtos;
-//using UdemyCarBook.Dto.CommentDtos;
-//using UdemyCarBook.Dto.LocationDtos;
+using UdemyCarBook.Dto.CommentDtos;
+using UdemyCarBook.Dto.LocationDtos;
 
 namespace UdemyCarBook.WebUI.Controllers
 {
@@ -43,25 +43,26 @@ namespace UdemyCarBook.WebUI.Controllers
         }
 
         [HttpGet]
-            public PartialViewResult AddComment(int id)
-            {
-                ViewBag.blogid = id;
-                return PartialView();
-            }
+        public PartialViewResult AddComment(int id)
+        {
+            ViewBag.blogid = id;
+            return PartialView();
+        }
 
-            //    [HttpPost]
-            //    public async Task<IActionResult> AddComment(CreateCommentDto createCommentDto)
-            //    {
-            //        var client = _httpClientFactory.CreateClient();
-            //        var jsonData = JsonConvert.SerializeObject(createCommentDto);
-            //        StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            //        var responseMessage = await client.PostAsync("https://localhost:7060/api/Comments/CreateCommentWithMediator", stringContent);
-            //        if (responseMessage.IsSuccessStatusCode)
-            //        {
-            //            return RedirectToAction("Index", "Default");
-            //        }
-            //return View();
-        
+        [HttpPost]
+        public async Task<IActionResult> AddComment(CreateCommentDto createCommentDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(createCommentDto);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PostAsync("http://localhost:5243/api/Comments/CreateCommentWithMediator", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "Default");
+            }
+            return View();
+
+        }
     }
 }
 

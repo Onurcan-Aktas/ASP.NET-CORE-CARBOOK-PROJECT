@@ -7,19 +7,26 @@ using UdemyCarBook.Application.Features.CQRS.Handlers.ContactHandlers;
 using UdemyCarBook.Application.Features.RepositoryPattern;
 using UdemyCarBook.Application.Interfaces;
 using UdemyCarBook.Application.Interfaces.BlogInterfaces;
+using UdemyCarBook.Application.Interfaces.CarFeatureInterfaces;
 using UdemyCarBook.Application.Interfaces.CarInterfaces;
 using UdemyCarBook.Application.Interfaces.CarPricingInterfaces;
+using UdemyCarBook.Application.Interfaces.RentACarInterfaces;
+using UdemyCarBook.Application.Interfaces.StatisticsInterfaces;
 using UdemyCarBook.Application.Interfaces.TagCloudInterfaces;
 using UdemyCarBook.Application.Services;
 using UdemyCarBook.Domain.Entities;
 using UdemyCarBook.Persistance.Context;
 using UdemyCarBook.Persistence.Repositories;
 using UdemyCarBook.Persistence.Repositories.BlogRepositories;
+using UdemyCarBook.Persistence.Repositories.CarFeatureRepositories;
+
 // Eğer alttaki using yolu farklıysa (klasör adın farklıysa) burayı küçük bir düzeltmen gerekebilir:
 using UdemyCarBook.Persistence.Repositories.CarPricingRepositories;
 using UdemyCarBook.Persistence.Repositories.CarRepositories;
 using UdemyCarBook.Persistence.Repositories.CommentRepositories;
+using UdemyCarBook.Persistence.Repositories.StatisticsRepositories;
 using UdemyCarBook.Persistence.Repositories.TagCloudRepositories;
+
 
 
 
@@ -36,6 +43,9 @@ builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 builder.Services.AddScoped<ITagCloudRepository, TagCloudRepository>();
 //builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(CommentRepository<>));
 builder.Services.AddScoped<IGenericRepository<Comment>, CommentRepository>();
+builder.Services.AddScoped(typeof(IStatisticsRepository), typeof(StatisticsRepository));
+builder.Services.AddScoped(typeof(ICarFeatureRepository), typeof(CarFeatureRepository));
+builder.Services.AddScoped(typeof(IRentACarRepository), typeof(UdemyCarBook.Persistence.Repositories.RentACarRepositories.RentACarRepository));
 
 
 // HATALI SATIR DÜZELTİLDİ: Arayüz yerine somut sınıf (CarPricingRepository) atandı.

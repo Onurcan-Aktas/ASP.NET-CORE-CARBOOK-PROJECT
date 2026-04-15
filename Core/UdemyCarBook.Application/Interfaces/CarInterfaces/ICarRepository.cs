@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,6 @@ namespace UdemyCarBook.Application.Interfaces.CarInterfaces
     {
         List<Car> GetCarsListWithBrands();
         List<Car> GetLast5CarsWithBrands();
+        int GetCarCount();
     }
 }

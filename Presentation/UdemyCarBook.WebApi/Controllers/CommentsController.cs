@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UdemyCarBook.Application.Features.Mediator.Commands.CommentCommands;
+
 //using UdemyCarBook.Application.Features.Mediator.Commands.CommentCommands;
 //using UdemyCarBook.Application.Features.Mediator.Commands.ReservationCommands;
 using UdemyCarBook.Application.Features.RepositoryPattern;
@@ -63,18 +65,18 @@ namespace UdemyCarBook.WebApi.Controllers
             return Ok(value);
         }
 
-        //[HttpGet("CommentCountByBlog")]
-        //public IActionResult CommentCountByBlog(int id)
-        //{
-        //    var value = _commentsRepository.GetCountCommentByBlog(id);
-        //    return Ok(value);
-        //}
+        [HttpGet("CommentCountByBlog")]
+        public IActionResult CommentCountByBlog(int id)
+        {
+            var value = _commentsRepository.GetCountCommentByBlog(id);
+            return Ok(value);
+        }
 
-        //[HttpPost("CreateCommentWithMediator")]
-        //public async Task<IActionResult> CreateCommentWithMediator(CreateCommentCommand command)
-        //{
-        //    await _mediator.Send(command);
-        //    return Ok("Yorum başarıyla eklendi");
-        //}
+        [HttpPost("CreateCommentWithMediator")]
+        public async Task<IActionResult> CreateCommentWithMediator(CreateCommentCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok("Yorum başarıyla eklendi");
+        }
     }
 } 

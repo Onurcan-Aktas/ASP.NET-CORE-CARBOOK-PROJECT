@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UdemyCarBook.Application.Features.CQRS.Commands.AboutCommands;
 using UdemyCarBook.Application.Features.CQRS.Handlers.AboutHandlers;
@@ -46,7 +47,7 @@ namespace UdemyCarBook.WebApi.Controllers
             return Ok("Hakkımda Bilgisi Eklendi");
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<IActionResult> RemoveAbout(int id)
         {
             await _removeAboutCommandHandler.Handle(new RemoveAboutCommand(id));

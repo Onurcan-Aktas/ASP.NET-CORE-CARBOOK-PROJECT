@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using UdemyCarBook.Dto.AuthorDtos;
 using UdemyCarBook.Dto.StatisticsDtos;
