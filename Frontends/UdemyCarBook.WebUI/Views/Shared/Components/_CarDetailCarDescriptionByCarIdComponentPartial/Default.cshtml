@@ -1,0 +1,16 @@
+﻿@model UdemyCarBook.Dto.CarDescriptionDtos.ResultCarDescriptionByCarIdDto
+
+@if (Model != null)
+{
+    <div class="tab-pane fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
+        <p>@Model.Details</p>
+    </div>
+}
+else
+{
+    <div class="tab-pane fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
+        <div class="alert alert-warning mt-3" role="alert">
+            <i class="fas fa-exclamation-triangle"></i> Bu araca ait bir açıklama bilgisi henüz eklenmemiş.
+        </div>
+    </div>
+}

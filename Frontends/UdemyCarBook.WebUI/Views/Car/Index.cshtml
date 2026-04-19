@@ -7,7 +7,7 @@
 <section class="ftco-section bg-light">
     <div class="container">
         <div class="row">
-            @foreach(var item in Model)
+            @foreach (var item in Model)
             {
                 <div class="col-md-4">
                     <div class="car-wrap rounded ftco-animate">
@@ -21,11 +21,12 @@
                             </div>
                             <p class="d-flex mb-0 d-block">
                                 <a href="/Reservation/Index/@item.CarId" class="btn btn-primary py-2 mr-1">Hemen Kirala</a>
-                                <a href="/Car/CarDetail/@item.CarId" class="btn btn-secondary py-2 ml-1">Detaylar</a></p>
+                                <a href="/Car/CarDetail/@item.CarId" class="btn btn-secondary py-2 ml-1">Detaylar</a>
+                            </p>
                         </div>
                     </div>
                 </div>
             }
-        </div>       
+        </div>
     </div>
 </section>
