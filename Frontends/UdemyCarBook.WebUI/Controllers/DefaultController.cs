@@ -18,30 +18,34 @@ namespace UdemyCarBook.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var client = _httpClientFactory.CreateClient();
+            // Olası null hatalarını önlemek için varsayılan olarak boş bir liste oluşturuyoruz
+            List<SelectListItem> values2 = new List<SelectListItem>();
 
-            // Token kontrolü yapmadan direkt API'ye istek atıyoruz
-            var responseMessage = await client.GetAsync("http://localhost:5243/api/Locations");
+            var token = User.Claims.FirstOrDefault(x => x.Type == "carbooktoken")?.Value;
 
-            if (responseMessage.IsSuccessStatusCode)
+            if (token != null)
             {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData);
+                var client = _httpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var responseMessage = await client.GetAsync("http://localhost:5243/api/Locations");
 
-                List<SelectListItem> values2 = (from x in values
-                                                select new SelectListItem
-                                                {
-                                                    Text = x.Name,
-                                                    Value = x.LocationID.ToString()
-                                                }).ToList();
+                // API'den başarılı yanıt gelip gelmediğini kontrol etmek her zaman iyidir
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                    var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData);
 
-                ViewBag.LocationID = values2;
+                    values2 = (from x in values
+                               select new SelectListItem
+                               {
+                                   Text = x.Name,
+                                   Value = x.LocationID.ToString()
+                               }).ToList();
+                }
             }
-            else
-            {
-                // API ayakta değilse veya bir hata olursa sayfa çökmesin diye boş liste yolluyoruz
-                ViewBag.LocationID = new List<SelectListItem>();
-            }
+
+            // ÇÖZÜM NOKTASI: View tarafında aranan isimle (LocationID) birebir aynı atamayı yapıyoruz
+            ViewBag.LocationID = values2;
 
             return View();
         }
