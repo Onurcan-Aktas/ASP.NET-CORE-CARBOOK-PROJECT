@@ -45,7 +45,7 @@ namespace UdemyCarBook.WebUI.Controllers
             }
 
             // ÇÖZÜM NOKTASI: View tarafında aranan isimle (LocationID) birebir aynı atamayı yapıyoruz
-            ViewBag.LocationID = values2;
+            ViewBag.v = values2;
 
             return View();
         }

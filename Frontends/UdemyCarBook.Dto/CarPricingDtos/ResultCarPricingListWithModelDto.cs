@@ -9,6 +9,7 @@ namespace UdemyCarBook.Dto.CarPricingDtos
 {
     public class ResultCarPricingListWithModelDto
     {
+        public int CarId { get; set; }
         public string model { get; set; }
         public decimal dailyAmount { get; set; }
         public decimal weeklyAmount { get; set; }
